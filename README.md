@@ -1,2 +1,2 @@
 # GEM-Project-
-KG to Text Generation for the LLM course 
+KG/RDF to Text Generation for the LLM course (NPFL140)
