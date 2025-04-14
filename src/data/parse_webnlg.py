@@ -3,7 +3,6 @@ import json
 import xml.etree.ElementTree as ET
 from tqdm import tqdm
 
-# === Configuration ===
 WEBNLG_PATH = 'dataset/webnlg_release_v3.0/en/train'
 OUTPUT_PATH = 'dataset/webnlg_processed.jsonl'
 
@@ -14,7 +13,6 @@ def parse_xml_file(file_path):
     samples = []
 
     for entry in entries:
-        # Triplets (modified version = cleaned)
         mtriples = entry.find('modifiedtripleset')
         if mtriples is None:
             continue
@@ -26,7 +24,6 @@ def parse_xml_file(file_path):
                 subj, rel, obj = [x.strip() for x in parts]
                 triples.append((subj, rel, obj))
 
-        # Texts (references)
         lex_entries = entry.findall('lex')
         texts = [lex.text.strip() for lex in lex_entries if lex.text]
 
