@@ -7,8 +7,8 @@ from torch_geometric.data import Data
 
 from src.data.utils.lm_modeling import load_model, load_text2embedding
 
-INPUT_PATH = 'dataset/webnlg_processed.jsonl'
-GRAPH_DIR = 'dataset/webnlg/graphs'
+INPUT_PATH = 'dataset/test.jsonl'
+GRAPH_DIR = 'dataset/webnlg/test'
 model_name = 'sbert'  
 
 model, tokenizer, device = load_model[model_name]()

@@ -3,11 +3,12 @@ import json
 import xml.etree.ElementTree as ET
 from tqdm import tqdm
 
-WEBNLG_PATH = 'dataset/webnlg_release_v3.0/en/train'
-OUTPUT_PATH = 'dataset/webnlg_processed.jsonl'
+INPUT_XML = 'dataset/webnlg_release_v3.0/en/test/rdf-to-text-generation-test-data-with-refs-en.xml'
+OUTPUT_JSONL = 'dataset/test.jsonl'
 
-def parse_xml_file(file_path):
-    tree = ET.parse(file_path)
+
+def parse_webnlg_test_file(xml_file):
+    tree = ET.parse(xml_file)
     root = tree.getroot()
     entries = root.findall('.//entry')
     samples = []
@@ -24,8 +25,7 @@ def parse_xml_file(file_path):
                 subj, rel, obj = [x.strip() for x in parts]
                 triples.append((subj, rel, obj))
 
-        lex_entries = entry.findall('lex')
-        texts = [lex.text.strip() for lex in lex_entries if lex.text]
+        texts = [lex.text.strip() for lex in entry.findall('lex') if lex.text]
 
         if triples and texts:
             samples.append({
@@ -35,21 +35,6 @@ def parse_xml_file(file_path):
 
     return samples
 
-def parse_all_webnlg(xml_root_path):
-    all_samples = []
-
-    for num_triples_folder in sorted(os.listdir(xml_root_path)):
-        folder_path = os.path.join(xml_root_path, num_triples_folder)
-        if not os.path.isdir(folder_path):
-            continue
-        xml_files = [f for f in os.listdir(folder_path) if f.endswith('.xml')]
-
-        for file in tqdm(xml_files, desc=f"Parsing {num_triples_folder}"):
-            file_path = os.path.join(folder_path, file)
-            samples = parse_xml_file(file_path)
-            all_samples.extend(samples)
-
-    return all_samples
 
 def save_to_jsonl(samples, output_path):
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
@@ -57,9 +42,10 @@ def save_to_jsonl(samples, output_path):
         for sample in samples:
             f.write(json.dumps(sample) + '\n')
 
+
 if __name__ == '__main__':
-    print("Parsing WebNLG XML...")
-    all_data = parse_all_webnlg(WEBNLG_PATH)
-    print(f"Found {len(all_data)} entries.")
-    print(f"Saving to {OUTPUT_PATH}...")
-    save_to_jsonl(all_data, OUTPUT_PATH)
+    print("Parsing RDF-to-Text WebNLG Test File with Refs...")
+    parsed_samples = parse_webnlg_test_file(INPUT_XML)
+    print(f"✅ Extracted {len(parsed_samples)} test entries")
+    save_to_jsonl(parsed_samples, OUTPUT_JSONL)
+    print(f"✅ Saved to {OUTPUT_JSONL}")

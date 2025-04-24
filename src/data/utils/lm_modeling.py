@@ -42,7 +42,7 @@ class Sentence_Transformer(nn.Module):
         self.bert_model = AutoModel.from_pretrained(pretrained_repo)
 
     def mean_pooling(self, model_output, attention_mask):
-        token_embeddings = model_output[0]  # First element of model_output contains all token embeddings
+        token_embeddings = model_output[0]
         data_type = token_embeddings.dtype
         input_mask_expanded = attention_mask.unsqueeze(-1).expand(token_embeddings.size()).to(data_type)
         return torch.sum(token_embeddings * input_mask_expanded, 1) / torch.clamp(input_mask_expanded.sum(1), min=1e-9)
