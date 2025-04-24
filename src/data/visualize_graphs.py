@@ -1,8 +1,8 @@
 import torch
 from torch_geometric.data import Data
 
-# Here you can select the desired file between 0 and 13210
-graph = torch.load("dataset/webnlg/graphs/1.pt", weights_only=False)
+# Here you can select the desired file
+graph = torch.load("dataset/webnlg/test/650.pt", weights_only=False)
 
 # Print a summary of the graph object: number of nodes, edges, and the shape of each component
 print(graph)
