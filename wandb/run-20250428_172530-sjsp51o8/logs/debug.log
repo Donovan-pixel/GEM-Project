@@ -1,0 +1,23 @@
+2025-04-28 17:25:30,790 INFO    MainThread:20980 [wandb_setup.py:_flush():68] Current SDK version is 0.19.10
+2025-04-28 17:25:30,790 INFO    MainThread:20980 [wandb_setup.py:_flush():68] Configure stats pid to 20980
+2025-04-28 17:25:30,790 INFO    MainThread:20980 [wandb_setup.py:_flush():68] Loading settings from C:\Users\melvi\.config\wandb\settings
+2025-04-28 17:25:30,792 INFO    MainThread:20980 [wandb_setup.py:_flush():68] Loading settings from C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\wandb\settings
+2025-04-28 17:25:30,792 INFO    MainThread:20980 [wandb_setup.py:_flush():68] Loading settings from environment variables
+2025-04-28 17:25:30,792 INFO    MainThread:20980 [wandb_init.py:setup_run_log_directory():724] Logging user logs to C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\wandb\run-20250428_172530-sjsp51o8\logs\debug.log
+2025-04-28 17:25:30,792 INFO    MainThread:20980 [wandb_init.py:setup_run_log_directory():725] Logging internal logs to C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\wandb\run-20250428_172530-sjsp51o8\logs\debug-internal.log
+2025-04-28 17:25:30,792 INFO    MainThread:20980 [wandb_init.py:init():852] calling init triggers
+2025-04-28 17:25:30,792 INFO    MainThread:20980 [wandb_init.py:init():857] wandb.init called with sweep_config: {}
+config: {'model_name': 'graph_llm', 'project': 'project_g_retriever', 'seed': 0, 'dataset': 'expla_graphs', 'lr': 1e-05, 'wd': 0.05, 'patience': 2, 'batch_size': 8, 'grad_steps': 2, 'num_epochs': 10, 'warmup_epochs': 1, 'eval_batch_size': 16, 'llm_model_name': '7b', 'llm_model_path': '', 'llm_frozen': 'True', 'llm_num_virtual_tokens': 10, 'output_dir': 'output', 'max_txt_len': 512, 'max_new_tokens': 32, 'max_memory': [80, 80], 'gnn_model_name': 'gt', 'gnn_num_layers': 4, 'gnn_in_dim': 1024, 'gnn_hidden_dim': 1024, 'gnn_num_heads': 4, 'gnn_dropout': 0.0, '_wandb': {}}
+2025-04-28 17:25:30,793 INFO    MainThread:20980 [wandb_init.py:init():893] starting backend
+2025-04-28 17:25:30,793 INFO    MainThread:20980 [wandb_init.py:init():897] sending inform_init request
+2025-04-28 17:25:30,876 INFO    MainThread:20980 [backend.py:_multiprocessing_setup():101] multiprocessing start_methods=spawn, using: spawn
+2025-04-28 17:25:30,877 INFO    MainThread:20980 [wandb_init.py:init():907] backend started and connected
+2025-04-28 17:25:30,879 INFO    MainThread:20980 [wandb_init.py:init():1002] updated telemetry
+2025-04-28 17:25:30,943 INFO    MainThread:20980 [wandb_init.py:init():1026] communicating run to backend with 90.0 second timeout
+2025-04-28 17:25:31,500 INFO    MainThread:20980 [wandb_init.py:init():1101] starting run threads in backend
+2025-04-28 17:25:31,934 INFO    MainThread:20980 [wandb_run.py:_console_start():2566] atexit reg
+2025-04-28 17:25:31,934 INFO    MainThread:20980 [wandb_run.py:_redirect():2414] redirect: wrap_raw
+2025-04-28 17:25:31,935 INFO    MainThread:20980 [wandb_run.py:_redirect():2483] Wrapping output streams.
+2025-04-28 17:25:31,935 INFO    MainThread:20980 [wandb_run.py:_redirect():2506] Redirects installed.
+2025-04-28 17:25:31,938 INFO    MainThread:20980 [wandb_init.py:init():1147] run started, returning control to user process
+2025-04-28 17:27:16,630 INFO    MsgRouterThr:20980 [mailbox.py:close():129] [no run ID] Closing mailbox, abandoning 1 handles.

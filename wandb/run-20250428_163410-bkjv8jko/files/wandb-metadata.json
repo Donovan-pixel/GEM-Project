@@ -1,0 +1,37 @@
+{
+  "os": "Windows-11-10.0.26100-SP0",
+  "python": "CPython 3.12.10",
+  "startedAt": "2025-04-28T14:34:10.159958Z",
+  "args": [
+    "--llm_model_name",
+    "7b",
+    "--gnn_model_name",
+    "gt"
+  ],
+  "program": "C:\\Users\\melvi\\Documents\\Melvin\\ENSAI\\Échange Prague\\Cours\\Large Language Models\\GEM-Project-\\train.py",
+  "codePath": "train.py",
+  "git": {
+    "remote": "https://github.com/Donovan-pixel/GEM-Project.git",
+    "commit": "54461079f62f22e81f01b930a47ac723d7b03998"
+  },
+  "email": "melvinbazeille@gmail.com",
+  "root": "C:\\Users\\melvi\\Documents\\Melvin\\ENSAI\\Échange Prague\\Cours\\Large Language Models\\GEM-Project-",
+  "host": "DESKTOP-RMQ1ACK",
+  "executable": "C:\\Users\\melvi\\AppData\\Local\\Microsoft\\WindowsApps\\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\\python.exe",
+  "codePathLocal": "train.py",
+  "cpu_count": 12,
+  "cpu_count_logical": 16,
+  "disk": {
+    "/": {
+      "total": "999223717888",
+      "used": "189417267200"
+    }
+  },
+  "memory": {
+    "total": "16847323136"
+  },
+  "cpu": {
+    "count": 12,
+    "countLogical": 16
+  }
+}

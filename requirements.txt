@@ -1,0 +1,26 @@
+# Core
+torch==2.2.1+cu121
+torchvision==0.17.1+cu121
+torchaudio==2.2.1+cu121
+--extra-index-url https://download.pytorch.org/whl/cu121
+
+# PyTorch Geometric (core + extensions)
+torch-scatter==2.1.2
+torch-sparse==0.6.18
+torch-geometric==2.5.0
+torch-cluster==1.6.3
+torch-spline-conv==1.2.2
+
+# Transformers & LLMs
+transformers==4.38.2
+peft==0.10.0
+accelerate==0.28.0
+tokenizers==0.15.2
+
+# Utils
+nltk
+pandas
+tqdm
+wandb
+
+numpy<2

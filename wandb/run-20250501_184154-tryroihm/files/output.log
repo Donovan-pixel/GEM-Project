@@ -1,0 +1,20 @@
+Available attributes: <bound method BaseData.keys of DataBatch(x=[33, 1024], edge_index=[2, 25], edge_attr=[25, 1024], num_nodes=33, triples=[8], id=[8], desc=[8], label=[8], batch=[33], ptr=[9])>
+Batch structure: DataBatch(x=[33, 1024], edge_index=[2, 25], edge_attr=[25, 1024], num_nodes=33, triples=[8], id=[8], desc=[8], label=[8], batch=[33], ptr=[9])
+Loading LLAMA
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [01:59<00:00, 59.73s/it]
+LLAMA loaded on device cpu with dtype torch.float32
+Freezing LLAMA weights!
+Trainable: 31485952 / 6769901568 (0.47%)
+Traceback (most recent call last):
+  File "C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\train.py", line 145, in <module>
+    main(args)
+  File "C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\train.py", line 77, in main
+    loss.backward()
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\torch\_tensor.py", line 626, in backward
+    torch.autograd.backward(
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\torch\autograd\__init__.py", line 347, in backward
+    _engine_run_backward(
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\torch\autograd\graph.py", line 823, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

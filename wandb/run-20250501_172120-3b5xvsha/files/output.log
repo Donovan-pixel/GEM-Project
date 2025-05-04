@@ -1,0 +1,7 @@
+Available attributes: <bound method BaseData.keys of DataBatch(x=[33, 1024], edge_index=[2, 25], edge_attr=[25, 1024], num_nodes=33, triples=[8], id=[8], desc=[8], label=[8], batch=[33], ptr=[9])>
+Batch structure: DataBatch(x=[33, 1024], edge_index=[2, 25], edge_attr=[25, 1024], num_nodes=33, triples=[8], id=[8], desc=[8], label=[8], batch=[33], ptr=[9])
+Loading LLAMA
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [01:41<00:00, 50.84s/it]
+LLAMA loaded on device cpu with dtype torch.float32
+Freezing LLAMA weights!
+Trainable: 31485952 / 6769901568 (0.47%)

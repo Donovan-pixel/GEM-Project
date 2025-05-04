@@ -1,0 +1,22 @@
+{"time":"2025-04-28T23:27:32.4288544+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"C:\\Users\\melvi\\Documents\\Melvin\\ENSAI\\Échange Prague\\Cours\\Large Language Models\\GEM-Project-\\wandb\\run-20250428_232732-op83agyv\\logs\\debug-core.log"}
+{"time":"2025-04-28T23:27:32.8346533+02:00","level":"INFO","msg":"created new stream","id":"op83agyv"}
+{"time":"2025-04-28T23:27:32.8346533+02:00","level":"INFO","msg":"stream: started","id":"op83agyv"}
+{"time":"2025-04-28T23:27:32.8346533+02:00","level":"INFO","msg":"handler: started","stream_id":"op83agyv"}
+{"time":"2025-04-28T23:27:32.8346533+02:00","level":"INFO","msg":"sender: started","stream_id":"op83agyv"}
+{"time":"2025-04-28T23:27:32.8354497+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"op83agyv"}
+{"time":"2025-04-28T23:27:33.1830144+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-28T23:27:48.7702956+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T23:28:03.4362+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T23:28:18.5301997+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T23:28:34.212462+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T23:28:48.5965305+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T23:29:03.3164709+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T23:29:18.2049666+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T23:29:22.2090621+02:00","level":"INFO","msg":"stream: closing","id":"op83agyv"}
+{"time":"2025-04-28T23:29:22.2113589+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-28T23:29:22.2119518+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-28T23:29:23.0166442+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-28T23:29:23.321971+02:00","level":"INFO","msg":"handler: closed","stream_id":"op83agyv"}
+{"time":"2025-04-28T23:29:23.321971+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"op83agyv"}
+{"time":"2025-04-28T23:29:23.321971+02:00","level":"INFO","msg":"sender: closed","stream_id":"op83agyv"}
+{"time":"2025-04-28T23:29:23.3239475+02:00","level":"INFO","msg":"stream: closed","id":"op83agyv"}

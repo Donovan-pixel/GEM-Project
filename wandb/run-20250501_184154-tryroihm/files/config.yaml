@@ -1,0 +1,93 @@
+_wandb:
+    value:
+        cli_version: 0.19.10
+        m: []
+        python_version: 3.12.10
+        t:
+            "1":
+                - 1
+                - 5
+                - 11
+                - 41
+                - 49
+                - 53
+                - 55
+                - 71
+                - 77
+                - 98
+            "2":
+                - 1
+                - 5
+                - 11
+                - 41
+                - 49
+                - 53
+                - 55
+                - 71
+                - 77
+                - 98
+            "3":
+                - 13
+                - 16
+                - 23
+                - 55
+            "4": 3.12.10
+            "5": 0.19.10
+            "6": 4.49.0
+            "8":
+                - 3
+                - 5
+            "12": 0.19.10
+            "13": windows-amd64
+batch_size:
+    value: 8
+eval_batch_size:
+    value: 16
+gnn_dropout:
+    value: 0
+gnn_hidden_dim:
+    value: 1024
+gnn_in_dim:
+    value: 1024
+gnn_model_name:
+    value: gt
+gnn_num_heads:
+    value: 4
+gnn_num_layers:
+    value: 4
+grad_steps:
+    value: 2
+llm_frozen:
+    value: "True"
+llm_model_name:
+    value: 7b
+llm_model_path:
+    value: ""
+llm_num_virtual_tokens:
+    value: 10
+lr:
+    value: 1e-05
+max_memory:
+    value:
+        - 80
+        - 80
+max_new_tokens:
+    value: 32
+max_txt_len:
+    value: 512
+model_name:
+    value: graph_llm
+num_epochs:
+    value: 10
+output_dir:
+    value: output
+patience:
+    value: 2
+project:
+    value: project_g_retriever
+seed:
+    value: 0
+warmup_epochs:
+    value: 1
+wd:
+    value: 0.05
