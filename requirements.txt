@@ -24,3 +24,7 @@ tqdm
 wandb
 
 numpy<2
+
+# Evaluation
+evaluate
+bert_score
