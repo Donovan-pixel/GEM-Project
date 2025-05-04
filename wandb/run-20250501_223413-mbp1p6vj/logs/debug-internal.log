@@ -1,0 +1,7 @@
+{"time":"2025-05-01T22:34:13.8085196+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"C:\\Users\\melvi\\Documents\\Melvin\\ENSAI\\Échange Prague\\Cours\\Large Language Models\\GEM-Project-\\wandb\\run-20250501_223413-mbp1p6vj\\logs\\debug-core.log"}
+{"time":"2025-05-01T22:34:14.1240374+02:00","level":"INFO","msg":"created new stream","id":"mbp1p6vj"}
+{"time":"2025-05-01T22:34:14.1240374+02:00","level":"INFO","msg":"stream: started","id":"mbp1p6vj"}
+{"time":"2025-05-01T22:34:14.1240374+02:00","level":"INFO","msg":"sender: started","stream_id":"mbp1p6vj"}
+{"time":"2025-05-01T22:34:14.1240374+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"mbp1p6vj"}
+{"time":"2025-05-01T22:34:14.1240374+02:00","level":"INFO","msg":"handler: started","stream_id":"mbp1p6vj"}
+{"time":"2025-05-01T22:34:14.4445964+02:00","level":"INFO","msg":"Starting system monitor"}

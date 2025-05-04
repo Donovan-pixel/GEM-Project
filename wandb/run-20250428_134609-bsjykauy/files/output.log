@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\train.py", line 140, in <module>
+    main(args)
+  File "C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\train.py", line 51, in main
+    model = load_model[args.model_name](args=args)
+            ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'graph_llm'

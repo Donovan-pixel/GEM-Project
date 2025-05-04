@@ -1,0 +1,21 @@
+{"time":"2025-04-28T18:38:58.8087143+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"C:\\Users\\melvi\\Documents\\Melvin\\ENSAI\\Échange Prague\\Cours\\Large Language Models\\GEM-Project-\\wandb\\run-20250428_183858-78dtv58t\\logs\\debug-core.log"}
+{"time":"2025-04-28T18:38:59.1191425+02:00","level":"INFO","msg":"created new stream","id":"78dtv58t"}
+{"time":"2025-04-28T18:38:59.119676+02:00","level":"INFO","msg":"stream: started","id":"78dtv58t"}
+{"time":"2025-04-28T18:38:59.119676+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"78dtv58t"}
+{"time":"2025-04-28T18:38:59.119676+02:00","level":"INFO","msg":"sender: started","stream_id":"78dtv58t"}
+{"time":"2025-04-28T18:38:59.119676+02:00","level":"INFO","msg":"handler: started","stream_id":"78dtv58t"}
+{"time":"2025-04-28T18:38:59.5616122+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-28T18:39:15.5723617+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T18:39:30.4729211+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T18:39:44.9023373+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T18:39:59.7091093+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T18:40:14.7149913+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T18:40:30.8202587+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T18:40:37.331863+02:00","level":"INFO","msg":"stream: closing","id":"78dtv58t"}
+{"time":"2025-04-28T18:40:37.3339758+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-28T18:40:37.337549+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-28T18:40:37.9183711+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-28T18:40:38.1956753+02:00","level":"INFO","msg":"handler: closed","stream_id":"78dtv58t"}
+{"time":"2025-04-28T18:40:38.1956753+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"78dtv58t"}
+{"time":"2025-04-28T18:40:38.1962072+02:00","level":"INFO","msg":"sender: closed","stream_id":"78dtv58t"}
+{"time":"2025-04-28T18:40:38.196773+02:00","level":"INFO","msg":"stream: closed","id":"78dtv58t"}
