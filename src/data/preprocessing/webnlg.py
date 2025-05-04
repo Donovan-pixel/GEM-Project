@@ -38,7 +38,7 @@ class WebNLGGraphTextDataset(Dataset):
     def get(self, idx):
         # Chargement du graphe PyG
         graph_path = os.path.join(self.graph_dir, self.graph_files[idx])
-        graph_data = torch.load(graph_path, map_location='cpu')  # <- sécurité sur CPU
+        graph_data = torch.load(graph_path, map_location='cpu', weights_only=False)
 
         # Chargement des informations textuelles
         entry = self.entries[idx]

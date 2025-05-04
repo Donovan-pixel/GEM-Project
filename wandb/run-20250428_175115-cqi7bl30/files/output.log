@@ -1,0 +1,30 @@
+Loading LLAMA
+Loading checkpoint shards: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [01:40<00:00, 50.00s/it]
+LLAMA loaded on device cpu with dtype torch.float32
+Freezing LLAMA weights!
+Trainable: 31485952 / 6769901568 (0.47%)
+Traceback (most recent call last):
+  File "C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\train.py", line 140, in <module>
+    main(args)
+  File "C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\train.py", line 71, in main
+    loss = model(batch)
+           ^^^^^^^^^^^^
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\torch\nn\modules\module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\torch\nn\modules\module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\src\model\graph_llm.py", line 108, in forward
+    questions = self.tokenizer(samples["question"], add_special_tokens=False)
+                               ~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\torch_geometric\data\batch.py", line 181, in __getitem__
+    return super().__getitem__(idx)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\torch_geometric\data\data.py", line 577, in __getitem__
+    return self._store[key]
+           ~~~~~~~~~~~^^^^^
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\torch_geometric\data\storage.py", line 118, in __getitem__
+    return self._mapping[key]
+           ~~~~~~~~~~~~~^^^^^
+KeyError: 'question'

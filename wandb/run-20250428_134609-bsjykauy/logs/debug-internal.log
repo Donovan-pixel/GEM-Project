@@ -1,0 +1,15 @@
+{"time":"2025-04-28T13:46:10.1938938+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"C:\\Users\\melvi\\Documents\\Melvin\\ENSAI\\Échange Prague\\Cours\\Large Language Models\\GEM-Project-\\wandb\\run-20250428_134609-bsjykauy\\logs\\debug-core.log"}
+{"time":"2025-04-28T13:46:10.6848454+02:00","level":"INFO","msg":"created new stream","id":"bsjykauy"}
+{"time":"2025-04-28T13:46:10.6848454+02:00","level":"INFO","msg":"stream: started","id":"bsjykauy"}
+{"time":"2025-04-28T13:46:10.6898621+02:00","level":"INFO","msg":"handler: started","stream_id":"bsjykauy"}
+{"time":"2025-04-28T13:46:10.6908922+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"bsjykauy"}
+{"time":"2025-04-28T13:46:10.691477+02:00","level":"INFO","msg":"sender: started","stream_id":"bsjykauy"}
+{"time":"2025-04-28T13:46:10.9477374+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-28T13:46:11.4239082+02:00","level":"INFO","msg":"stream: closing","id":"bsjykauy"}
+{"time":"2025-04-28T13:46:11.4239082+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-28T13:46:11.4239082+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-28T13:46:12.2413238+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-28T13:46:12.4626618+02:00","level":"INFO","msg":"handler: closed","stream_id":"bsjykauy"}
+{"time":"2025-04-28T13:46:12.4626618+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"bsjykauy"}
+{"time":"2025-04-28T13:46:12.4626618+02:00","level":"INFO","msg":"sender: closed","stream_id":"bsjykauy"}
+{"time":"2025-04-28T13:46:12.4634399+02:00","level":"INFO","msg":"stream: closed","id":"bsjykauy"}

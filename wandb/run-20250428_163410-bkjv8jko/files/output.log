@@ -1,0 +1,25 @@
+Loading LLAMA
+tokenizer_config.json: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 776/776 [00:00<00:00, 945kB/s]
+C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\huggingface_hub\file_download.py:142: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in C:\Users\melvi\.cache\huggingface\hub\models--meta-llama--Llama-2-7b-hf. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
+Traceback (most recent call last):
+  File "C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\train.py", line 140, in <module>
+    main(args)
+  File "C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\train.py", line 51, in main
+    model = load_model[args.model_name](args=args)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\src\model\graph_llm.py", line 39, in __init__
+    self.tokenizer = AutoTokenizer.from_pretrained(args.llm_model_path, use_fast=False, revision=kwargs["revision"])
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\transformers\models\auto\tokenization_auto.py", line 944, in from_pretrained
+    return tokenizer_class.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\transformers\utils\import_utils.py", line 1736, in __getattribute__
+    requires_backends(cls, cls._backends)
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\transformers\utils\import_utils.py", line 1724, in requires_backends
+    raise ImportError("".join(failed))
+ImportError:
+LlamaTokenizer requires the SentencePiece library but it was not found in your environment. Checkout the instructions on the
+installation page of its repo: https://github.com/google/sentencepiece#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.

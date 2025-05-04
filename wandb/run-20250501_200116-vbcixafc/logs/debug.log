@@ -1,0 +1,52 @@
+2025-05-01 20:01:16,729 INFO    MainThread:26600 [wandb_setup.py:_flush():68] Current SDK version is 0.19.10
+2025-05-01 20:01:16,729 INFO    MainThread:26600 [wandb_setup.py:_flush():68] Configure stats pid to 26600
+2025-05-01 20:01:16,729 INFO    MainThread:26600 [wandb_setup.py:_flush():68] Loading settings from C:\Users\melvi\.config\wandb\settings
+2025-05-01 20:01:16,729 INFO    MainThread:26600 [wandb_setup.py:_flush():68] Loading settings from C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\wandb\settings
+2025-05-01 20:01:16,729 INFO    MainThread:26600 [wandb_setup.py:_flush():68] Loading settings from environment variables
+2025-05-01 20:01:16,729 INFO    MainThread:26600 [wandb_init.py:setup_run_log_directory():724] Logging user logs to C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\wandb\run-20250501_200116-vbcixafc\logs\debug.log
+2025-05-01 20:01:16,729 INFO    MainThread:26600 [wandb_init.py:setup_run_log_directory():725] Logging internal logs to C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\wandb\run-20250501_200116-vbcixafc\logs\debug-internal.log
+2025-05-01 20:01:16,729 INFO    MainThread:26600 [wandb_init.py:init():852] calling init triggers
+2025-05-01 20:01:16,729 INFO    MainThread:26600 [wandb_init.py:init():857] wandb.init called with sweep_config: {}
+config: {'model_name': 'graph_llm', 'project': 'project_g_retriever', 'seed': 0, 'lr': 1e-05, 'wd': 0.05, 'patience': 2, 'batch_size': 8, 'grad_steps': 2, 'num_epochs': 10, 'warmup_epochs': 1, 'eval_batch_size': 16, 'llm_model_name': '7b', 'llm_model_path': '', 'llm_frozen': 'True', 'llm_num_virtual_tokens': 10, 'output_dir': 'output', 'max_txt_len': 512, 'max_new_tokens': 32, 'max_memory': [80, 80], 'gnn_model_name': 'gt', 'gnn_num_layers': 4, 'gnn_in_dim': 1024, 'gnn_hidden_dim': 1024, 'gnn_num_heads': 4, 'gnn_dropout': 0.0, '_wandb': {}}
+2025-05-01 20:01:16,729 INFO    MainThread:26600 [wandb_init.py:init():893] starting backend
+2025-05-01 20:01:16,729 INFO    MainThread:26600 [wandb_init.py:init():897] sending inform_init request
+2025-05-01 20:01:16,904 INFO    MainThread:26600 [backend.py:_multiprocessing_setup():101] multiprocessing start_methods=spawn, using: spawn
+2025-05-01 20:01:16,908 INFO    MainThread:26600 [wandb_init.py:init():907] backend started and connected
+2025-05-01 20:01:16,913 INFO    MainThread:26600 [wandb_init.py:init():1002] updated telemetry
+2025-05-01 20:01:16,970 INFO    MainThread:26600 [wandb_init.py:init():1026] communicating run to backend with 90.0 second timeout
+2025-05-01 20:01:17,720 INFO    MainThread:26600 [wandb_init.py:init():1101] starting run threads in backend
+2025-05-01 20:01:18,682 INFO    MainThread:26600 [wandb_run.py:_console_start():2566] atexit reg
+2025-05-01 20:01:18,682 INFO    MainThread:26600 [wandb_run.py:_redirect():2414] redirect: wrap_raw
+2025-05-01 20:01:18,684 INFO    MainThread:26600 [wandb_run.py:_redirect():2483] Wrapping output streams.
+2025-05-01 20:01:18,684 INFO    MainThread:26600 [wandb_run.py:_redirect():2506] Redirects installed.
+2025-05-01 20:01:18,687 INFO    MainThread:26600 [wandb_init.py:init():1147] run started, returning control to user process
+2025-05-01 20:20:35,642 WARNING MsgRouterThr:26600 [router.py:message_loop():63] [no run ID] message_loop has been closed
+Traceback (most recent call last):
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\wandb\sdk\lib\sock_client.py", line 208, in _read_packet_bytes
+    data = self._sock.recv(self._bufsize)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] Une connexion existante a dû être fermée par l’hôte distant
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\wandb\sdk\interface\router_sock.py", line 27, in _read_message
+    return self._sock_client.read_server_response(timeout=1)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\wandb\sdk\lib\sock_client.py", line 235, in read_server_response
+    data = self._read_packet_bytes(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\wandb\sdk\lib\sock_client.py", line 212, in _read_packet_bytes
+    raise SockClientClosedError from e
+wandb.sdk.lib.sock_client.SockClientClosedError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\wandb\sdk\interface\router.py", line 56, in message_loop
+    msg = self._read_message()
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\wandb\sdk\interface\router_sock.py", line 29, in _read_message
+    raise MessageRouterClosedError from e
+wandb.sdk.interface.router.MessageRouterClosedError
+2025-05-01 20:20:35,801 INFO    MsgRouterThr:26600 [mailbox.py:close():129] [no run ID] Closing mailbox, abandoning 1 handles.
