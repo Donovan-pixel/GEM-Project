@@ -1,0 +1,22 @@
+{"time":"2025-04-28T17:25:30.8843075+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"C:\\Users\\melvi\\Documents\\Melvin\\ENSAI\\Échange Prague\\Cours\\Large Language Models\\GEM-Project-\\wandb\\run-20250428_172530-sjsp51o8\\logs\\debug-core.log"}
+{"time":"2025-04-28T17:25:31.2183115+02:00","level":"INFO","msg":"created new stream","id":"sjsp51o8"}
+{"time":"2025-04-28T17:25:31.2183115+02:00","level":"INFO","msg":"stream: started","id":"sjsp51o8"}
+{"time":"2025-04-28T17:25:31.2183115+02:00","level":"INFO","msg":"handler: started","stream_id":"sjsp51o8"}
+{"time":"2025-04-28T17:25:31.2183115+02:00","level":"INFO","msg":"sender: started","stream_id":"sjsp51o8"}
+{"time":"2025-04-28T17:25:31.2183115+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"sjsp51o8"}
+{"time":"2025-04-28T17:25:31.5068212+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-28T17:25:47.3376887+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T17:26:02.1993949+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T17:26:17.0240269+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T17:26:32.2735863+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T17:26:47.8828573+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T17:27:01.5400732+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T17:27:16.552832+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T17:27:16.6751132+02:00","level":"INFO","msg":"stream: closing","id":"sjsp51o8"}
+{"time":"2025-04-28T17:27:16.6768389+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-28T17:27:16.6779375+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-28T17:27:17.3212176+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-28T17:27:17.5877949+02:00","level":"INFO","msg":"handler: closed","stream_id":"sjsp51o8"}
+{"time":"2025-04-28T17:27:17.5883363+02:00","level":"INFO","msg":"sender: closed","stream_id":"sjsp51o8"}
+{"time":"2025-04-28T17:27:17.5877949+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"sjsp51o8"}
+{"time":"2025-04-28T17:27:17.5895211+02:00","level":"INFO","msg":"stream: closed","id":"sjsp51o8"}

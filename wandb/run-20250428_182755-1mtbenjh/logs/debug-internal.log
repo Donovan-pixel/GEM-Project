@@ -1,0 +1,19 @@
+{"time":"2025-04-28T18:27:55.9102062+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"C:\\Users\\melvi\\Documents\\Melvin\\ENSAI\\Échange Prague\\Cours\\Large Language Models\\GEM-Project-\\wandb\\run-20250428_182755-1mtbenjh\\logs\\debug-core.log"}
+{"time":"2025-04-28T18:27:56.2973356+02:00","level":"INFO","msg":"created new stream","id":"1mtbenjh"}
+{"time":"2025-04-28T18:27:56.2973356+02:00","level":"INFO","msg":"stream: started","id":"1mtbenjh"}
+{"time":"2025-04-28T18:27:56.2973356+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"1mtbenjh"}
+{"time":"2025-04-28T18:27:56.2973356+02:00","level":"INFO","msg":"sender: started","stream_id":"1mtbenjh"}
+{"time":"2025-04-28T18:27:56.2973356+02:00","level":"INFO","msg":"handler: started","stream_id":"1mtbenjh"}
+{"time":"2025-04-28T18:27:56.6319161+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-28T18:28:11.9650168+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T18:28:27.6177795+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T18:28:42.2670169+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T18:28:56.905656+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T18:29:08.2684606+02:00","level":"INFO","msg":"stream: closing","id":"1mtbenjh"}
+{"time":"2025-04-28T18:29:08.2701124+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-28T18:29:08.2706651+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-28T18:29:09.0211353+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-28T18:29:09.3286943+02:00","level":"INFO","msg":"handler: closed","stream_id":"1mtbenjh"}
+{"time":"2025-04-28T18:29:09.3286943+02:00","level":"INFO","msg":"sender: closed","stream_id":"1mtbenjh"}
+{"time":"2025-04-28T18:29:09.3286943+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"1mtbenjh"}
+{"time":"2025-04-28T18:29:09.3302098+02:00","level":"INFO","msg":"stream: closed","id":"1mtbenjh"}

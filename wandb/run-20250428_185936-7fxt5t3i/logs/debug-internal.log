@@ -1,0 +1,21 @@
+{"time":"2025-04-28T18:59:36.9522301+02:00","level":"INFO","msg":"stream: starting","core version":"0.19.10","symlink path":"C:\\Users\\melvi\\Documents\\Melvin\\ENSAI\\Échange Prague\\Cours\\Large Language Models\\GEM-Project-\\wandb\\run-20250428_185936-7fxt5t3i\\logs\\debug-core.log"}
+{"time":"2025-04-28T18:59:37.266081+02:00","level":"INFO","msg":"created new stream","id":"7fxt5t3i"}
+{"time":"2025-04-28T18:59:37.266081+02:00","level":"INFO","msg":"stream: started","id":"7fxt5t3i"}
+{"time":"2025-04-28T18:59:37.2724351+02:00","level":"INFO","msg":"writer: Do: started","stream_id":"7fxt5t3i"}
+{"time":"2025-04-28T18:59:37.2730539+02:00","level":"INFO","msg":"sender: started","stream_id":"7fxt5t3i"}
+{"time":"2025-04-28T18:59:37.2767628+02:00","level":"INFO","msg":"handler: started","stream_id":"7fxt5t3i"}
+{"time":"2025-04-28T18:59:37.6236139+02:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-04-28T18:59:53.7696382+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T19:00:09.9987224+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T19:00:22.8514645+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T19:00:39.1910575+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T19:00:52.7240856+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T19:01:07.7385717+02:00","level":"ERROR","msg":"monitor: error sampling metrics: Incorrect function."}
+{"time":"2025-04-28T19:01:17.7045126+02:00","level":"INFO","msg":"stream: closing","id":"7fxt5t3i"}
+{"time":"2025-04-28T19:01:17.7060928+02:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-04-28T19:01:17.7076401+02:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-04-28T19:01:18.5564989+02:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-04-28T19:01:18.8939811+02:00","level":"INFO","msg":"handler: closed","stream_id":"7fxt5t3i"}
+{"time":"2025-04-28T19:01:18.8939811+02:00","level":"INFO","msg":"writer: Close: closed","stream_id":"7fxt5t3i"}
+{"time":"2025-04-28T19:01:18.8948502+02:00","level":"INFO","msg":"sender: closed","stream_id":"7fxt5t3i"}
+{"time":"2025-04-28T19:01:18.8973234+02:00","level":"INFO","msg":"stream: closed","id":"7fxt5t3i"}

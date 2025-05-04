@@ -1,0 +1,36 @@
+Loading LLAMA
+tokenizer.model: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 500k/500k [00:00<00:00, 9.92MB/s]
+C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\huggingface_hub\file_download.py:142: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in C:\Users\melvi\.cache\huggingface\hub\models--meta-llama--Llama-2-7b-hf. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
+special_tokens_map.json: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 414/414 [00:00<?, ?B/s]
+tokenizer.json: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1.84M/1.84M [00:00<00:00, 3.54MB/s]
+config.json: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 609/609 [00:00<00:00, 941kB/s]
+model.safetensors.index.json: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 26.8k/26.8k [00:00<00:00, 35.7MB/s]
+model-00001-of-00002.safetensors: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 9.98G/9.98G [05:13<00:00, 31.9MB/s]
+model-00002-of-00002.safetensors: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3.50G/3.50G [01:45<00:00, 33.3MB/s]
+Downloading shards: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [06:58<00:00, 209.28s/it]
+Device 0 is not available, available devices are []
+Device 1 is not available, available devices are []
+Traceback (most recent call last):
+  File "C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\train.py", line 140, in <module>
+    main(args)
+  File "C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\train.py", line 51, in main
+    model = load_model[args.model_name](args=args)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\melvi\Documents\Melvin\ENSAI\Échange Prague\Cours\Large Language Models\GEM-Project-\src\model\graph_llm.py", line 43, in __init__
+    model = AutoModelForCausalLM.from_pretrained(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\transformers\models\auto\auto_factory.py", line 564, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\transformers\modeling_utils.py", line 262, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\transformers\modeling_utils.py", line 4244, in from_pretrained
+    max_memory = get_balanced_memory(
+                 ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\melvi\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.12_qbz5n2kfra8p0\LocalCache\local-packages\Python312\site-packages\accelerate\utils\modeling.py", line 977, in get_balanced_memory
+    num_devices = len([d for d in max_memory if torch.device(d).type == expected_device_type and max_memory[d] > 0])
+                                                ^^^^^^^^^^^^^^^
+RuntimeError: Cannot access accelerator device when none is available.
