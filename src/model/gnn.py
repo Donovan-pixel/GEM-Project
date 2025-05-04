@@ -13,11 +13,11 @@ class GraphTransformer(torch.nn.Module):
                 in_channels=in_channels,
                 out_channels=hidden_channels // num_heads,
                 heads=num_heads,
-                edge_dim=in_channels,  # <- edge_attr used
+                edge_dim=in_channels,
                 dropout=dropout
             )
         )
-        self.bns.append(torch.nn.BatchNorm1d(hidden_channels))
+        self.bns.append(torch.nn.LayerNorm(hidden_channels))
 
         for _ in range(num_layers - 2):
             self.convs.append(
@@ -29,7 +29,7 @@ class GraphTransformer(torch.nn.Module):
                     dropout=dropout,
                 )
             )
-            self.bns.append(torch.nn.BatchNorm1d(hidden_channels))
+            self.bns.append(torch.nn.LayerNorm(hidden_channels))
 
         self.convs.append(
             TransformerConv(
@@ -71,7 +71,7 @@ class GAT(torch.nn.Module):
                 out_channels=hidden_channels,
                 heads=num_heads,
                 concat=False,
-                edge_dim=in_channels  # 🔥 Utiliser edge_attr dans GATConv
+                edge_dim=in_channels
             )
         )
         self.bns.append(torch.nn.BatchNorm1d(hidden_channels))
