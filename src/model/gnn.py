@@ -17,7 +17,7 @@ class GraphTransformer(torch.nn.Module):
                 dropout=dropout
             )
         )
-        self.bns.append(torch.nn.LayerNorm(hidden_channels))
+        self.bns.append(torch.nn.BatchNorm1d(hidden_channels))
 
         for _ in range(num_layers - 2):
             self.convs.append(
@@ -29,7 +29,7 @@ class GraphTransformer(torch.nn.Module):
                     dropout=dropout,
                 )
             )
-            self.bns.append(torch.nn.LayerNorm(hidden_channels))
+            self.bns.append(torch.nn.BatchNorm1d(hidden_channels))
 
         self.convs.append(
             TransformerConv(
