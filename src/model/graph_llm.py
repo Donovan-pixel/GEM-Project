@@ -29,7 +29,7 @@ class GraphLLM(torch.nn.Module):
 
         # Detect CPU vs GPU
         is_cuda = torch.cuda.is_available()
-        device = torch.device('cuda:0' if is_cuda else 'cpu')
+        self.device = torch.device('cuda:0' if is_cuda else 'cpu')
         dtype = torch.float16 if is_cuda else torch.float32
         device_map = "auto" if is_cuda else None
 
@@ -50,7 +50,7 @@ class GraphLLM(torch.nn.Module):
             device_map=device_map,
             revision="main"
         )
-        print(f"LLAMA loaded on device {device} with dtype {dtype}")
+        print(f"LLAMA loaded on device {self.device} with dtype {dtype}")
 
         # Freeze or apply LoRA
         if args.llm_frozen == 'True':
@@ -72,7 +72,7 @@ class GraphLLM(torch.nn.Module):
 
         self.model = model
 
-        # Graph encoder
+        # Graph encoder - explicitly move to device
         self.graph_encoder = load_gnn_model[args.gnn_model_name](
             in_channels=args.gnn_in_dim,
             hidden_channels=args.gnn_hidden_dim,
@@ -80,46 +80,116 @@ class GraphLLM(torch.nn.Module):
             num_layers=args.gnn_num_layers,
             dropout=args.gnn_dropout,
             num_heads=args.gnn_num_heads,
-        ).to(device)
+        ).to(self.device)
 
-        # Project graph embeddings to match LLM input space
+        # Project graph embeddings to match LLM input space - explicitly move to device
         self.projector = nn.Sequential(
             nn.Linear(args.gnn_hidden_dim, 2048),
             nn.Sigmoid(),
             nn.Linear(2048, 4096),
-        ).to(device)
+        ).to(self.device)
 
         self.word_embedding = self.model.model.get_input_embeddings()
 
     @property
     def device(self):
-        return next(self.parameters()).device
+        # FIXED: Return the stored device attribute
+        return getattr(self, '_device', torch.device('cuda:0' if torch.cuda.is_available() else 'cpu'))
+    
+    @device.setter
+    def device(self, value):
+        # Store device as an attribute
+        self._device = value
 
     def maybe_autocast(self, dtype=torch.float16):
         return autocast(dtype=dtype) if self.device.type == 'cuda' else contextlib.nullcontext()
 
-    def encode_graphs(self, samples):
-        graphs = samples.to(self.device)
-        n_embeds, _ = self.graph_encoder(graphs.x, graphs.edge_index, graphs.edge_attr)
-        g_embeds = scatter(n_embeds, graphs.batch, dim=0, reduce='mean')
+    def encode_graphs(self, graphs):
+        """
+        Encode graph data into embeddings
+        Works with both PyG Batch objects and dictionaries
+        """
+        if isinstance(graphs, dict):
+            # Handle dictionary input
+            x = graphs['x'].to(self.device)
+            edge_index = graphs['edge_index'].to(self.device)
+            edge_attr = graphs.get('edge_attr', None)
+            if edge_attr is not None:
+                edge_attr = edge_attr.to(self.device)
+            batch = graphs.get('batch', None)
+            if batch is not None:
+                batch = batch.to(self.device)
+        else:
+            # Handle PyG Batch object input
+            x = graphs.x.to(self.device)
+            edge_index = graphs.edge_index.to(self.device)
+            edge_attr = getattr(graphs, 'edge_attr', None)
+            if edge_attr is not None:
+                edge_attr = edge_attr.to(self.device)
+            batch = graphs.batch.to(self.device) if hasattr(graphs, 'batch') else None
+
+        # Process through the GNN
+        n_embeds, _ = self.graph_encoder(x, edge_index, edge_attr)
+    
+        # Aggregate node embeddings to graph embeddings
+        if batch is not None:
+            g_embeds = scatter(n_embeds, batch, dim=0, reduce='mean')
+        else:
+            # If no batch info, assume a single graph
+            g_embeds = n_embeds.mean(dim=0, keepdim=True)
+    
         return g_embeds
 
     def forward(self, samples):
-        questions = self.tokenizer(
-            ["Generate a natural language sentence that describes the following RDF graph:"] * len(samples.id),
-            add_special_tokens=False
-        )
-        descriptions = self.tokenizer(samples.desc, add_special_tokens=False)
-        labels = self.tokenizer(samples.label, add_special_tokens=False)
+        if isinstance(samples, dict):
+            # Handle the case where samples is a dictionary
+            batch_size = len(samples['id']) if 'id' in samples else 1
+            questions = self.tokenizer(
+                ["Generate a natural language sentence that describes the following RDF graph:"] * batch_size,
+                add_special_tokens=False
+            )
+            descriptions = self.tokenizer(samples['desc'], add_special_tokens=False)
+        
+            # Fix for label tokenization - ensure it's a list of strings
+            label_texts = samples['label']
+            if isinstance(label_texts, str):
+                label_texts = [label_texts]
+            elif isinstance(label_texts[0], list):
+                # If labels are lists of strings, take the first one
+                label_texts = [label[0] if isinstance(label, list) and len(label) > 0 else label for label in label_texts]
+            labels = self.tokenizer(label_texts, add_special_tokens=False)
+        
+            # For graph processing, we need to make sure we're accessing the right attributes
+            graph_data = samples  # Assuming the graph data is already in the dict
+        else:
+            # Handle the case where samples is a PyG Batch object (expected behavior)
+            batch_size = len(samples.id)
+            questions = self.tokenizer(
+                ["Generate a natural language sentence that describes the following RDF graph:"] * batch_size,
+                add_special_tokens=False
+            )
+            descriptions = self.tokenizer(samples.desc, add_special_tokens=False)
+        
+            # Fix for label tokenization - ensure it's a list of strings
+            label_texts = samples.label
+            if isinstance(label_texts, str):
+                label_texts = [label_texts]
+            elif isinstance(label_texts[0], list):
+                # If labels are lists of strings, take the first one
+                label_texts = [label[0] if isinstance(label, list) and len(label) > 0 else label for label in label_texts]
+            labels = self.tokenizer(label_texts, add_special_tokens=False)
+        
+            # For graph processing, we'll use samples directly as it's already a PyG object
+            graph_data = samples
 
         eos_tokens = self.tokenizer(EOS, add_special_tokens=False)
         eos_user_tokens = self.tokenizer(EOS_USER, add_special_tokens=False)
         bos_embeds = self.word_embedding(self.tokenizer(BOS, add_special_tokens=False, return_tensors='pt').input_ids[0].to(self.device))
         pad_embeds = self.word_embedding(torch.tensor(self.tokenizer.pad_token_id).to(self.device)).unsqueeze(0)
 
-        graph_embeds = self.projector(self.encode_graphs(samples))
+        # Process graph data
+        graph_embeds = self.projector(self.encode_graphs(graph_data))
 
-        batch_size = len(samples.id)
         batch_inputs_embeds = []
         batch_attention_mask = []
         batch_label_input_ids = []
@@ -156,19 +226,50 @@ class GraphLLM(torch.nn.Module):
         return outputs.loss
 
     def inference(self, samples):
-        questions = self.tokenizer(
-            ["Generate a natural language sentence that describes the following RDF graph:"] * len(samples.id),
-            add_special_tokens=False
-        )
-        descriptions = self.tokenizer(samples.desc, add_special_tokens=False)
+        # Handle both dictionary and PyG Batch object cases
+        if isinstance(samples, dict):
+            batch_size = len(samples['id']) if 'id' in samples else 1
+            questions = self.tokenizer(
+                ["Generate a natural language sentence that describes the following RDF graph:"] * batch_size,
+                add_special_tokens=False
+            )
+        
+            # Ensure descriptions is properly formatted
+            desc_texts = samples['desc']
+            if isinstance(desc_texts, str):
+                desc_texts = [desc_texts]
+            descriptions = self.tokenizer(desc_texts, add_special_tokens=False)
+        
+            graph_data = samples  # Assuming the graph data is already in the dict
+            sample_ids = samples['id']
+            sample_labels = samples['label']
+            sample_questions = samples.get('question', [""] * batch_size)
+            sample_desc = samples['desc']
+        else:
+            batch_size = len(samples.id)
+            questions = self.tokenizer(
+                ["Generate a natural language sentence that describes the following RDF graph:"] * batch_size,
+                add_special_tokens=False
+            )
+        
+            # Ensure descriptions is properly formatted
+            desc_texts = samples.desc
+            if isinstance(desc_texts, str):
+                desc_texts = [desc_texts]
+            descriptions = self.tokenizer(desc_texts, add_special_tokens=False)
+        
+            graph_data = samples
+            sample_ids = samples.id
+            sample_labels = samples.label
+            sample_questions = samples.question
+            sample_desc = samples.desc
 
         eos_user_tokens = self.tokenizer(EOS_USER, add_special_tokens=False)
         bos_embeds = self.word_embedding(self.tokenizer(BOS, add_special_tokens=False, return_tensors='pt').input_ids[0].to(self.device))
         pad_embeds = self.word_embedding(torch.tensor(self.tokenizer.pad_token_id).to(self.device)).unsqueeze(0)
 
-        graph_embeds = self.projector(self.encode_graphs(samples))
+        graph_embeds = self.projector(self.encode_graphs(graph_data))
 
-        batch_size = len(samples.id)
         batch_inputs_embeds = []
         batch_attention_mask = []
 
@@ -199,12 +300,16 @@ class GraphLLM(torch.nn.Module):
 
         pred = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)
 
+        # FIXED: Ensure all items are native Python types before returning
         return {
-            'id': samples.id,
+            'id': [str(id_item) if isinstance(id_item, torch.Tensor) else id_item for id_item in sample_ids],
             'pred': pred,
-            'label': samples.label,
-            'question': samples.question,
-            'desc': samples.desc,
+            'label': [[str(label_item) if isinstance(label_item, torch.Tensor) else label_item] 
+                     if isinstance(sample_labels[i], list) else 
+                     str(sample_labels[i]) if isinstance(sample_labels[i], torch.Tensor) else sample_labels[i]
+                     for i in range(len(sample_labels))],
+            'question': [str(q_item) if isinstance(q_item, torch.Tensor) else q_item for q_item in sample_questions],
+            'desc': [str(d_item) if isinstance(d_item, torch.Tensor) else d_item for d_item in sample_desc],
         }
 
     def print_trainable_params(self):

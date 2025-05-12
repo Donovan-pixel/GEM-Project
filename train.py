@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
 
@@ -20,6 +21,7 @@ from src.utils.seed import seed_everything
 from src.utils.lr_schedule import adjust_learning_rate
 
 
+
 def main(args):
 
     # Step 1: Init W&B and seed
@@ -29,17 +31,15 @@ def main(args):
                config=args)
     seed_everything(seed=args.seed)
 
-    # Step 2: Load datasets (preprocessed graphs + serialized RDF)
+    # Step 2: Load datasets
     train_dataset = WebNLGGraphTextDataset(
         graph_dir="dataset/webnlg/train",
         jsonl_path="dataset/train.jsonl",
         split="train")
-
     val_dataset = WebNLGGraphTextDataset(
         graph_dir="dataset/webnlg/dev",
         jsonl_path="dataset/dev.jsonl",
         split="dev")
-
     test_dataset = WebNLGGraphTextDataset(
         graph_dir="dataset/webnlg/test",
         jsonl_path="dataset/test.jsonl",
@@ -52,71 +52,104 @@ def main(args):
     # Step 3: Load model
     args.llm_model_path = llama_model_path[args.llm_model_name]
     model = load_model[args.model_name](args=args)
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
+    checkpoint_path = f'{args.output_dir}/webnlg/model_name_{args.model_name}_llm_model_name_{args.llm_model_name}_llm_frozen_{args.llm_frozen}_max_txt_len_{args.max_txt_len}_max_new_tokens_{args.max_new_tokens}_gnn_model_name_{args.gnn_model_name}_patience_{args.patience}_num_epochs_{args.num_epochs}_seed{args.seed}_checkpoint_best.pth'
+
+    if os.path.exists(checkpoint_path):
+        print("Checkpoint already exists. Skipping training and loading best model...")
+        model = _reload_best_model(model, args)
+        model.eval()
+        skip_training = True
+    else:
+        skip_training = False
+    
+    # FIXED: Don't move the entire model to device since we're using device_map="auto"
+    # The submodules graph_encoder and projector will be moved to device in the GraphLLM init
+    
     # Step 4: Optimizer
     params = [p for _, p in model.named_parameters() if p.requires_grad]
     optimizer = torch.optim.AdamW(params, lr=args.lr, weight_decay=args.wd)
-
     trainable_params, all_param = model.print_trainable_params()
     print(f"Trainable: {trainable_params} / {all_param} ({100 * trainable_params / all_param:.2f}%)")
 
-    # Step 5: Training
-    num_training_steps = args.num_epochs * len(train_loader)
-    best_val_loss = float('inf')
-    best_epoch = -1
+    if not skip_training:
+        # Step 5: Training loop
+        best_val_loss = float('inf')
+        best_epoch = -1
 
-    for epoch in range(args.num_epochs):
-        model.train()
-        epoch_loss, accum_loss = 0.0, 0.0
-        progress_bar = tqdm(train_loader, desc=f"Epoch {epoch}", unit="batch")
+        for epoch in range(args.num_epochs):
+            model.train()
+            epoch_loss, accum_loss = 0.0, 0.0
+            progress_bar = tqdm(train_loader, desc=f"Epoch {epoch}", unit="batch")
 
-        for step, batch in enumerate(progress_bar):
-            optimizer.zero_grad()
-            loss = model(batch)
-            loss.backward()
-            clip_grad_norm_(model.parameters(), max_norm=1.0)
+            for step, batch in enumerate(progress_bar):
+                # FIXED: Don't move the entire batch to device - let the model handle it
+                batch = {k: v.to(device) if isinstance(v, torch.Tensor) and k != 'label' and k != 'id' and k != 'desc' and k != 'question' else v 
+                        for k, v in batch.items()}
+                torch.cuda.empty_cache()
 
-            if (step + 1) % args.grad_steps == 0:
-                adjust_learning_rate(optimizer.param_groups[0], args.lr, step / len(train_loader) + epoch, args)
-                optimizer.step()
-                lr = optimizer.param_groups[0]["lr"]
-                wandb.log({'Lr': lr, 'Train Loss': accum_loss / args.grad_steps})
-                accum_loss = 0.0
+                try:
+                    loss = model(batch)
+                except torch.cuda.OutOfMemoryError:
+                    print(f"[OOM] Skipping batch {step} in epoch {epoch}")
+                    torch.cuda.empty_cache()
+                    continue
 
-            epoch_loss += loss.item()
-            accum_loss += loss.item()
-            progress_bar.set_postfix(loss=loss.item(), accum_loss=accum_loss / (step + 1))
+                optimizer.zero_grad()
+                loss.backward()
+                clip_grad_norm_(model.parameters(), max_norm=1.0)
 
-        avg_train_loss = epoch_loss / len(train_loader)
-        wandb.log({'Train Loss (Epoch)': avg_train_loss})
-        print(f"Epoch {epoch}: Train Loss = {avg_train_loss:.4f}")
+                if (step + 1) % args.grad_steps == 0:
+                    adjust_learning_rate(optimizer.param_groups[0], args.lr, step / len(train_loader) + epoch, args)
+                    optimizer.step()
+                    lr = optimizer.param_groups[0]["lr"]
+                    wandb.log({'Lr': lr, 'Train Loss': accum_loss / args.grad_steps})
+                    accum_loss = 0.0
 
-        # Step 6: Validation
+                epoch_loss += loss.item()
+                accum_loss += loss.item()
+                progress_bar.set_postfix(loss=loss.item(), accum_loss=accum_loss / (step + 1))
+
+            avg_train_loss = epoch_loss / len(train_loader)
+            wandb.log({'Train Loss (Epoch)': avg_train_loss})
+            print(f"Epoch {epoch}: Train Loss = {avg_train_loss:.4f}")
+
+            # Step 6: Validation
+            model.eval()
+            val_loss = 0.0
+            with torch.no_grad():
+                val_bar = tqdm(val_loader, desc="Validation", unit="batch")
+                for batch in val_bar:
+                    # FIXED: Similar batch handling as in training
+                    batch = {k: v.to(device) if isinstance(v, torch.Tensor) and k != 'label' and k != 'id' and k != 'desc' and k != 'question' else v 
+                            for k, v in batch.items()}
+                    try:
+                        val_loss += model(batch).item()
+                    except torch.cuda.OutOfMemoryError:
+                        print(f"[OOM] Skipping validation batch")
+                        torch.cuda.empty_cache()
+                        continue
+                    val_bar.set_postfix(val_loss=val_loss / (val_bar.n + 1))
+
+            avg_val_loss = val_loss / len(val_loader)
+            wandb.log({'Val Loss': avg_val_loss})
+            print(f"Epoch {epoch}: Val Loss = {avg_val_loss:.4f}")
+
+            if avg_val_loss < best_val_loss:
+                best_val_loss = avg_val_loss
+                _save_checkpoint(model, optimizer, epoch, args, is_best=True)
+                best_epoch = epoch
+
+            if epoch - best_epoch >= args.patience:
+                print(f"Early stopping at epoch {epoch}")
+                break
+
+        # Step 7: Evaluation
+        print("Reloading best model...")
+        model = _reload_best_model(model, args)
+        # FIXED: Don't move the model to device after reload
         model.eval()
-        val_loss = 0.0
-        with torch.no_grad():
-            val_bar = tqdm(val_loader, desc="Validation", unit="batch")
-            for batch in val_bar:
-                val_loss += model(batch).item()
-                val_bar.set_postfix(val_loss=val_loss / (val_bar.n + 1))
-        avg_val_loss = val_loss / len(val_loader)
-        wandb.log({'Val Loss': avg_val_loss})
-
-        print(f"Epoch {epoch}: Val Loss = {avg_val_loss:.4f}")
-
-        if avg_val_loss < best_val_loss:
-            best_val_loss = avg_val_loss
-            _save_checkpoint(model, optimizer, epoch, args, is_best=True)
-            best_epoch = epoch
-
-        if epoch - best_epoch >= args.patience:
-            print(f"Early stopping at epoch {epoch}")
-            break
-
-    # Step 7: Evaluation
-    print("Reloading best model...")
-    model = _reload_best_model(model, args)
-    model.eval()
 
     os.makedirs(f'{args.output_dir}/webnlg', exist_ok=True)
     out_path = f"{args.output_dir}/webnlg/graphllm_pred_seed{seed}.jsonl"
@@ -124,17 +157,26 @@ def main(args):
 
     with open(out_path, 'w') as f:
         for batch in tqdm(test_loader, desc="Generating predictions"):
-            with torch.no_grad():
-                output = model.inference(batch)
-                for i in range(len(output['id'])):
-                    entry = {
-                        'id': output['id'][i],
-                        'pred': output['pred'][i],
-                        'label': output['label'][i],
-                        'desc': output['desc'][i],
-                        'question': output['question'][i],
-                    }
-                    f.write(json.dumps(entry) + '\n')
+            # FIXED: Similar batch handling as in training/validation
+            batch = {k: v.to(device) if isinstance(v, torch.Tensor) and k != 'label' and k != 'id' and k != 'desc' and k != 'question' else v 
+                    for k, v in batch.items()}
+            try:
+                with torch.no_grad():
+                    output = model.inference(batch)
+                    print(output)
+                    for i in range(len(output['id'])):
+                        entry = {
+                            'id': int(output['id'][i]),
+                            'pred': output['pred'][i],
+                            'label': output['label'][i],
+                            'desc': output['desc'][i],
+                            'question': output['question'][i],
+                        }
+                        f.write(json.dumps(entry) + '\n')
+            except torch.cuda.OutOfMemoryError:
+                print(f"[OOM] Skipping prediction batch")
+                torch.cuda.empty_cache()
+                continue
 
     # Step 8: Compute metrics
     acc = eval_funcs['webnlg'](out_path)
