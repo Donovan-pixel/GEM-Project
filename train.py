@@ -163,7 +163,6 @@ def main(args):
             try:
                 with torch.no_grad():
                     output = model.inference(batch)
-                    print(output)
                     for i in range(len(output['id'])):
                         entry = {
                             'id': int(output['id'][i]),

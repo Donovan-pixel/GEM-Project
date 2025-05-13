@@ -300,16 +300,12 @@ class GraphLLM(torch.nn.Module):
 
         pred = self.tokenizer.batch_decode(outputs, skip_special_tokens=True)
 
-        # FIXED: Ensure all items are native Python types before returning
         return {
-            'id': [str(id_item) if isinstance(id_item, torch.Tensor) else id_item for id_item in sample_ids],
+            'id': sample_ids,
             'pred': pred,
-            'label': [[str(label_item) if isinstance(label_item, torch.Tensor) else label_item] 
-                     if isinstance(sample_labels[i], list) else 
-                     str(sample_labels[i]) if isinstance(sample_labels[i], torch.Tensor) else sample_labels[i]
-                     for i in range(len(sample_labels))],
-            'question': [str(q_item) if isinstance(q_item, torch.Tensor) else q_item for q_item in sample_questions],
-            'desc': [str(d_item) if isinstance(d_item, torch.Tensor) else d_item for d_item in sample_desc],
+            'label': sample_labels,
+            'question': sample_questions,
+            'desc': sample_desc,
         }
 
     def print_trainable_params(self):
