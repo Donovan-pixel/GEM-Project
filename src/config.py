@@ -16,8 +16,8 @@ def parse_args_llama():
     parser.add_argument("--patience", type=float, default=2)
 
     # Model Training
-    parser.add_argument("--batch_size", type=int, default=2)
-    parser.add_argument("--grad_steps", type=int, default=4)
+    parser.add_argument("--batch_size", type=int, default=4)
+    parser.add_argument("--grad_steps", type=int, default=8)
 
     # Learning Rate Scheduler
     parser.add_argument("--num_epochs", type=int, default=10)
@@ -27,7 +27,7 @@ def parse_args_llama():
     parser.add_argument("--eval_batch_size", type=int, default=2)
 
     # LLM related
-    parser.add_argument("--llm_model_name", type=str, default='7b')
+    parser.add_argument("--llm_model_name", type=str, default='1.1b_chat')
     parser.add_argument("--llm_model_path", type=str, default='')
     parser.add_argument("--llm_frozen", type=str, default='True')
     parser.add_argument("--llm_num_virtual_tokens", type=int, default=10)
@@ -37,7 +37,7 @@ def parse_args_llama():
     parser.add_argument("--max_memory", type=csv_list, default=[80,80])
 
     # GNN related
-    parser.add_argument("--gnn_model_name", type=str, default='gt')
+    parser.add_argument("--gnn_model_name", type=str, default='gat')
     parser.add_argument("--gnn_num_layers", type=int, default=4)
     parser.add_argument("--gnn_in_dim", type=int, default=1024)
     parser.add_argument("--gnn_hidden_dim", type=int, default=1024)
