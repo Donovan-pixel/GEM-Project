@@ -82,18 +82,21 @@ class GraphLLM(torch.nn.Module):
             num_heads=args.gnn_num_heads,
         ).to(self.device)
 
+        # Get the embedding dimension from the LLM model
+        self.embedding_dim = self.model.get_input_embeddings().weight.shape[1]
+        
         # Project graph embeddings to match LLM input space - explicitly move to device
         self.projector = nn.Sequential(
             nn.Linear(args.gnn_hidden_dim, 2048),
             nn.Sigmoid(),
-            nn.Linear(2048, 4096),
+            nn.Linear(2048, self.embedding_dim),  # Match embedding dimension of LLM
         ).to(self.device)
 
         self.word_embedding = self.model.model.get_input_embeddings()
 
     @property
     def device(self):
-        # FIXED: Return the stored device attribute
+        # Return the stored device attribute
         return getattr(self, '_device', torch.device('cuda:0' if torch.cuda.is_available() else 'cpu'))
     
     @device.setter
