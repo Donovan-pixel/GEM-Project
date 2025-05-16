@@ -4,19 +4,17 @@ import json
 from evaluate import load
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-p", "--pred_file", type=str)
-parser.add_argument("-g", "--gold_file", type=str)
+parser.add_argument("-o", "--out_file", type=str)
+#arser.add_argument("-g", "--gold_file", type=str)
 parser.add_argument("-gpu", action="store_true")
 
-def load_data(gold_file, pred_file):
+def load_data(out_file):
     gold, pred = [], []
-    with open(pred_file, "r") as r:
-        for line in r:
-            pred.append(line.strip())
-    with open(gold_file, "r") as r:
+    with open(out_file, "r") as r:
         for line in r:
             data = json.loads(line.strip())
-            gold.append(data["text_references"])
+            gold.append(data["label"])
+            pred.append(data["pred"])
     return gold, pred
 
 def score(gold, test, metrics):
@@ -30,6 +28,7 @@ def score(gold, test, metrics):
     elif metrics in ["bertscore"]:
         score = load(metrics)
         results = score.compute(predictions=test, references=gold, lang="en")
+        results["avg_precision"] = sum(results["precision"]) / len(results["precision"])
     return (metrics, results)
 
 def score_all(gold, test, gpu=False):
@@ -41,7 +40,7 @@ def score_all(gold, test, gpu=False):
 
 if __name__ == "__main__":
     args = parser.parse_args()
-    gold, test = load_data(args.gold_file, args.pred_file)
+    gold, test = load_data(args.out_file)
     print("Evaluation...")
     results = score_all(gold, test, args.gpu)
     print("Evaluation results")
