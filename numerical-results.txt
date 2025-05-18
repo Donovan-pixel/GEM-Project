@@ -18,4 +18,17 @@ bleu: 0.4702205261383189
 exact_match: 0.05564924114671164
 bertscore: 0.9512948829046188
 
+output/tinyllama/graphllm_pred_tiny_10epochs_gat_lora.jsonl
+bleu: 0.47693175185052356 
+exact_match: 0.05340078695896571 
+bertscore: 0.9539592191702599
 
+output/tinyllama/graphllm_pred_tiny_10epochs_gt_lora.jsonl
+bleu: 0.48701510679668114
+exact_match: 0.056211354693648116 
+bertscore: 0.9539592191702599 
+
+output/3b/graphllm_pred_3b_10epochs_gt.jsonl
+bleu: 0.19900146575989297 
+exact_match: 0.0
+bertscore: 0.8882642519346712
