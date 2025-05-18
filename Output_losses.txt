@@ -1,0 +1,129 @@
+gat_lora_10ep Val Loss	0.7881489828836432
+gat_lora_10ep Val Loss	0.7184432234695489
+gat_lora_10ep Val Loss	0.6912614907935369
+gat_lora_10ep Val Loss	0.6765441510745948
+gat_lora_10ep Val Loss	0.6589431179513177
+gat_lora_10ep Val Loss	0.6568065562444053
+gat_lora_10ep Val Loss	0.6478938845743378
+gat_lora_10ep Val Loss	0.6411610923403744
+gat_lora_10ep Val Loss	0.6376954635841955
+gat_lora_10ep Val Loss	0.633490900091416
+
+
+gat_lora_10ep Train Loss (Epoch)	1.0700000479587308
+gat_lora_10ep Train Loss (Epoch)	0.8080000803799403
+gat_lora_10ep Train Loss (Epoch)	0.7620552566523917
+gat_lora_10ep Train Loss (Epoch)	0.7365141811783733
+gat_lora_10ep Train Loss (Epoch)	0.7230365418536064
+gat_lora_10ep Train Loss (Epoch)	0.7102186641222485
+gat_lora_10ep Train Loss (Epoch)	0.7010275780604242
+gat_lora_10ep Train Loss (Epoch)	0.695080107057091
+gat_lora_10ep Train Loss (Epoch)	0.687999839272746
+gat_lora_10ep Train Loss (Epoch)	0.6835625413968784
+
+
+
+------------------------------------------------------------
+
+gt_lora_10ep Val Loss	0.7876591555577673
+gt_lora_10ep Val Loss	0.7222597250263754
+gt_lora_10ep Val Loss	0.6924777637532861
+gt_lora_10ep Val Loss	0.6769650786293211
+gt_lora_10ep Val Loss	0.6643927464310786
+gt_lora_10ep Val Loss	0.6578131769593957
+gt_lora_10ep Val Loss	0.6485373147850414
+gt_lora_10ep Val Loss	0.6436749419076837
+gt_lora_10ep Val Loss	0.6396647871469708
+gt_lora_10ep Val Loss	0.6363938821912956
+
+
+gt_lora_10ep Train Loss (Epoch)	1.0434266683543194
+gt_lora_10ep Train Loss (Epoch)	0.8075492712735336
+gt_lora_10ep Train Loss (Epoch)	0.762717770331923
+gt_lora_10ep Train Loss (Epoch)	0.7370467381904315
+gt_lora_10ep Train Loss (Epoch)	0.7176222278833245
+gt_lora_10ep Train Loss (Epoch)	0.712624011890043
+gt_lora_10ep Train Loss (Epoch)	0.7022669138987426
+gt_lora_10ep Train Loss (Epoch)	0.6965781482889044
+gt_lora_10ep Train Loss (Epoch)	0.6903440618547497
+gt_lora_10ep Train Loss (Epoch)	0.6853290313830565
+
+
+--------------------------------------------------------
+
+gat_10ep Val Loss	0.8030162459726242
+gat_10ep Val Loss	0.7605081971386354
+gat_10ep Val Loss	0.7381066729625066
+gat_10ep Val Loss	0.7329431517625884
+gat_10ep Val Loss	0.7233481683033548
+gat_10ep Val Loss	0.7184104018217082
+gat_10ep Val Loss	0.7116383638956564
+gat_10ep Val Loss	0.7122311420577894
+gat_10ep Val Loss	0.7095666220433993
+gat_10ep Val Loss	0.7068001588971781
+
+gat_10ep Train Loss (Epoch)	1.099260746043197
+gat_10ep Train Loss (Epoch)	0.842662481730395
+gat_10ep Train Loss (Epoch)	0.8098870756438996
+gat_10ep Train Loss (Epoch)	0.793910914520549
+gat_10ep Train Loss (Epoch)	0.7868857422526085
+gat_10ep Train Loss (Epoch)	0.7782592033026184
+gat_10ep Train Loss (Epoch)	0.7722712902816324
+gat_10ep Train Loss (Epoch)	0.7685128701317863
+gat_10ep Train Loss (Epoch)	0.7667041200193679
+gat_10ep Train Loss (Epoch)	0.763113323207736
+
+--------------------------------------------------------
+
+gt_10ep Val Loss	0.8143166793550519
+gt_10ep Val Loss	0.7515514012720945
+gt_10ep Val Loss	0.7346484094000548
+gt_10ep Val Loss	0.7254516565613895
+gt_10ep Val Loss	0.7183428274141513
+gt_10ep Val Loss	0.7180335979810436
+gt_10ep Val Loss	0.714392241885622
+gt_10ep Val Loss	0.7089083558506817
+gt_10ep Val Loss	0.7063866649671711
+gt_10ep Val Loss	0.705944381922269
+
+gt_10ep Train Loss (Epoch)	1.0822017936229418
+gt_10ep Train Loss (Epoch)	0.83786529019281
+gt_10ep Train Loss (Epoch)	0.8009384314634206
+gt_10ep Train Loss (Epoch)	0.7834365682334132
+gt_10ep Train Loss (Epoch)	0.7786533532857606
+gt_10ep Train Loss (Epoch)	0.7732375493933495
+gt_10ep Train Loss (Epoch)	0.7695306879469672
+gt_10ep Train Loss (Epoch)	0.763469508474356
+gt_10ep Train Loss (Epoch)	0.7606437016879649
+gt_10ep Train Loss (Epoch)	0.7578917573500213
+
+
+---------------------------------------------------------------
+
+gt_7b_10ep Val Loss	0.6121750892959624
+gt_7b_10ep Val Loss	0.5875973271862637
+gt_7b_10ep Val Loss	0.5787758578052766
+gt_7b_10ep Val Loss	0.5691897925704146
+gt_7b_10ep Val Loss	0.5656235754507766
+gt_7b_10ep Val Loss	0.5652515441536617
+gt_7b_10ep Val Loss	0.5603249730537835
+gt_7b_10ep Val Loss	0.5598131341756962
+gt_7b_10ep Val Loss	0.5579210813213095
+gt_7b_10ep Val Loss	0.5566893412331811
+
+
+gt_7b_10ep Train Loss (Epoch)	0.766557954193118
+gt_7b_10ep Train Loss (Epoch)	0.6232776035129789
+gt_7b_10ep Train Loss (Epoch)	0.6054490416849558
+gt_7b_10ep Train Loss (Epoch)	0.5962936522536681
+gt_7b_10ep Train Loss (Epoch)	0.586659443173067
+gt_7b_10ep Train Loss (Epoch)	0.5820198855214802
+gt_7b_10ep Train Loss (Epoch)	0.5796117719094789
+gt_7b_10ep Train Loss (Epoch)	0.5770676979343112
+gt_7b_10ep Train Loss (Epoch)	0.5749718912584183
+gt_7b_10ep Train Loss (Epoch)	0.5721821606225753
+
+
+---------------------------------------------------------------
+
+
