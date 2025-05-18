@@ -25,7 +25,6 @@ def get_accuracy_webnlg(path):
             pred = normalize(entry["pred"])
             refs = entry["label"]
 
-            # Ensure refs is a list of strings
             if isinstance(refs, str):
                 refs = [refs]
             elif isinstance(refs, list):

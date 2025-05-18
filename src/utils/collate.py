@@ -49,11 +49,11 @@ train_loader = DataLoader(
     collate_fn=graph_llm_collate_fn
 )
 
-for batch in train_loader:
-    print("RDF Descriptions for LLM:", batch.desc)
-    print("Text targets:", batch.label)
-    print("Graph node features shape:", batch.x.shape)
-    print("Edge index:", batch.edge_index.shape)
-    print("Batch vector:", batch.batch.shape)
-    print(batch.edge_attr)  # indique à quel graphe chaque nœud appartient
-    break
+# for batch in train_loader:
+#     print("RDF Descriptions for LLM:", batch.desc)
+#     print("Text targets:", batch.label)
+#     print("Graph node features shape:", batch.x.shape)
+#     print("Edge index:", batch.edge_index.shape)
+#     print("Batch vector:", batch.batch.shape)
+#     print(batch.edge_attr)  # indique à quel graphe chaque nœud appartient
+#     break
